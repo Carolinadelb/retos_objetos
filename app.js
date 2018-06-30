@@ -425,3 +425,109 @@ const convertObjectToList = (obj) => {
 }
 
 console.log(convertObjectToList(holly));
+
+/*Ejercicio 12:
+Escriba una función llamada "getSumOfAllElementsAtProperty".
+
+Dado un objeto y una key, "getSumOfAllElementsAtProperty" devuelve la suma de todos los elementos del array.
+
+Notas:
+
+Si el array está vacío, debe devolver 0.
+Si la propiedad en la key dada no es un array, debe devolver 0.
+Si no hay ninguna propiedad en la key dada, debe devolver 0. */
+
+
+let obj = {
+  key: [4, 1, 8]
+};
+
+
+const getSumOfAllElementsAtProperty = (obj, key) => {
+  let sum = 0;
+  if ( Array.isArray(obj[key]) === false || obj[key].length < 1 ) {//para saber si no es un array se pone metodo array.isarray ===false
+    return 0; //retornara 0 porque esta false, y si es menor a 1
+  }
+
+  for ( let element in obj[key] ) {
+    sum += obj[key][element]; //+= agrega la suma a la variable 
+  }
+  return sum;
+}
+
+let output = getSumOfAllElementsAtProperty(obj,'key');
+console.log(output);
+
+/*Ejercicio 13:
+Escriba una función llamada getProductOfAllElementsAtProperty.
+
+Dado un objeto y una key, getProductOfAllElementsAtProperty devuelve el producto de todos los elementos del array.
+
+Notas:
+
+Si el array está vacío, debe devolver 0.
+Si la propiedad en la key dada no es un array, debe devolver 0.
+Si no hay ninguna propiedad en la key dada, debe devolver 0. */
+
+let obj = {
+  key: [1, 2, 3, 4]
+};
+
+const getProductOfAllElementsAtProperty = (obj, key) => {
+  
+  if ( obj[key] === undefined || !(Array.isArray(obj[key])) || obj[key].length < 1) {
+    return 0;
+  }
+  
+  let product = 1;
+//pero itera sobre los valores de las propiedades del objeto,
+// en vez de sobre los mismos nombres de las propiedades.   
+  for( let probando in obj[key] ) {
+    product *= obj[key][probando];
+  }
+  return product;
+}
+
+let output = getProductOfAllElementsAtProperty(obj,'key');
+console.log(output);
+
+/*Ejercicio 15: 
+Dado dos objetos y una clave, "addObjectProperty" establece una nueva propiedad 
+en el primer objeto en la clave dada. El valor de esta nueva propiedad es el segundo objeto completo.
+*/
+
+let person1 = {
+  name: 'Joe Blow',
+  role: 'schlub'
+};
+let person2 = {
+  name: 'Mr. Burns',
+  role: 'supervisor'
+};
+
+const addObjectProperty = (p1, key, p2) => {
+  p1[key] = p2; //use this notation. obj1.key doesn't pass manager, but passes 'key'.
+  return p1;
+}
+let output = addObjectProperty(person1, 'manager', person2);
+console.log(output);
+
+/* Ejercicio 16: 
+Escribe una función llamada "addFullNameProperty".
+
+Dado un objeto que tiene una propiedad "firstName" y una propiedad "lastName", "addFullNameProperty"
+ devuelve una propiedad "fullName" cuyo valor es una cadena con el nombre y el apellido separados por un espacio.
+ */
+
+let person = {
+  firstName: 'Jade',
+  lastName: 'Smith'
+};
+
+const addFullNameProperty = (obj) => {
+  obj.fullName = obj.firstName + ' ' + obj.lastName;
+  return obj.fullName;
+}
+
+addFullNameProperty(person);
+console.log(person.fullName);
